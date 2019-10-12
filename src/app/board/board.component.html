@@ -1,0 +1,15 @@
+
+<h3 *ngIf="!gameOver">Current player: {{ currentPlayer.name }}</h3>
+<h3 *ngIf="gameOver && lastWinner.name == 'Draw'">It's a draw</h3>
+
+<div id="board" [class.locked]="boardLocked || gameOver">
+  <div *ngFor="let square of board"
+       class="square"
+       [class.checked]="square.value != ''"
+       [class.winner]="square.winner"
+       (click)="square_click(this.square)">
+    {{ square.value }}
+  </div>
+</div>
+
+<input type="button" value="Play again" *ngIf="gameOver" (click)="newGame()" />
